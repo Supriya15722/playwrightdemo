@@ -15,6 +15,23 @@ Feature: Add To Cart Functionality
         And I click on Add to cart button
         And I open the shopping cart
         Then the product name in the cart should match the product page
+        @productverify
+        Scenario: Verify the expected product is added to the cart
+            Given I am on login page
+            When I enter valid 'standard_user' and 'secret_sauce'
+            And I click on loginbutton
+            And I click on Add to cart button
+            And I open the shopping cart
+            Then the cart should contain product 'Sauce Labs Backpack'
+    @remove @cart @ui
+    Scenario: Verify product is removed successfully from the cart
+        Given I am on login page
+        When I enter valid 'standard_user' and 'secret_sauce'
+        And I click on loginbutton
+        And I click on Add to cart button
+        And I open the shopping cart
+        And I click the Remove button
+        Then the cart should be empty
 
     @logo @ui
     Scenario: Verify logo present on product page

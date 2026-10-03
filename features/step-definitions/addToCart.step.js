@@ -19,10 +19,29 @@ When('I open the shopping cart', async function ()
    this.cartPage = new CartPage(this.page);
 });
 
+When('I click the Remove button', async function ()
+{
+   await this.cartPage.removeProduct();
+});
+
 Then('the product name in the cart should match the product page', async function ()
 {
    const cartProductName = await this.cartPage.getProductName();
    expect(cartProductName).toEqual(this.productName);
+});
+
+Then('the cart should contain product {string}', async function (expectedProductName)
+{
+   console.log("the cart should contain product: " + expectedProductName);
+   const cartProductName = await this.cartPage.getProductName();
+   expect(cartProductName).toEqual(expectedProductName);
+});
+
+Then('the cart should be empty', async function ()
+{
+   console.log("the cart should be empty");
+   const cartItemCount = await this.cartPage.getCartItemCount();
+   expect(cartItemCount).toEqual(0);
 });
 
 
