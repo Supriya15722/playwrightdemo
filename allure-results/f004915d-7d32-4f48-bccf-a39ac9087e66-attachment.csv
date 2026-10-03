@@ -1,0 +1,4 @@
+username,password,errorMessage
+,,Username is required
+standard_user,,Password is required
+standard,pass,Username and password do not match any user in this service
